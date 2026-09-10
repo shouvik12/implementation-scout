@@ -57,6 +57,40 @@ Scout triggers automatically whenever answering well implies knowing
 *where in real code* something happens, not just conceptually *that*
 it happens. See `SKILL.md`'s execution gate for the exact trigger test.
 
+## How to tell if a report is actually verified
+
+Every Scout report should show its work — a real repo, a real file,
+ideally a real commit or tag, all traceable to something you could
+click and check yourself. Some reports, even when the *content* is
+accurate, quietly skip this and just answer from the model's training
+knowledge instead. Both look equally confident. Here's how to tell
+them apart:
+
+**A verified report looks like this:**
+```
+SOURCE: VERIFIED
+Repository: keycloak/keycloak
+File: services/.../AbstractTokenExchangeProvider.java
+Commit: 3a72090... (or a tagged release)
+```
+You can open that link. It's real.
+
+**A report that skipped verification looks like this:**
+```
+SOURCE: VERIFIED
+Cassandra's bootstrap process supports nodetool bootstrap resume...
+```
+No repo. No file. No commit. No link. Just a confident, accurate-
+sounding claim — which is exactly what makes this dangerous rather
+than obviously broken: the content can be entirely correct and still
+have never been checked this run.
+
+**Before acting on anything marked `VERIFIED` or `IMPLEMENTATION:
+READY`** — especially before a production change — ask directly:
+*"what's the actual URL or commit you fetched this from?"* If Scout
+can produce one, good. If it can't, that gap is the signal, not the
+label it gave itself.
+
 ## Known limitation
 
 `PROVENANCE` and `INTEGRATION POINT` are the two evidence axes most

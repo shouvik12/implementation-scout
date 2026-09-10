@@ -7,6 +7,17 @@ against ChatGPT, Gemini, and Claude. Nothing was added speculatively —
 each rule exists because a specific run produced a specific,
 identifiable bad output without it.
 
+## v1.1 — verification-check guidance in the README
+
+Added a short "How to tell if a report is actually verified" section
+using a real before/after contrast from testing (a genuinely-fetched
+Keycloak citation vs. an accurate-but-unverified Cassandra answer that
+never showed its sources). No changes to `SKILL.md` — this is
+documentation for the person reading a report, not a new rule for the
+model. Deliberately scoped smaller than an earlier proposed
+"verification protocol" — just the one concrete before/after example
+and one concrete action (ask for the URL/commit).
+
 ## v1.0 — initial ship
 
 ### Core pipeline
